@@ -69,7 +69,7 @@ optional arguments:
 ### Basic sending without attachment
 
 ````shell script
-docker run scoulomb/mail-sender\
+docker run scoulomb/mail-sender \
 --sender $FROM \
 --recipients $TO \
 --topic "non reg results" \
@@ -160,3 +160,17 @@ sudo systemd-resolve --flush-caches
 
 Google is overriding the `from` with the server user used in authentication.
 As such when allowing less secure app access: it enable other user to send mail with your name.
+
+### Check current image in use
+
+In build logs, get id (different from commit sha):
+````js
+Successfully built 4fc2a03c525c
+````
+
+And grep
+
+````js
+[vagrant@archlinux soapUI-docker]$ docker images | grep 4fc2a03c525c
+scoulomb/mail-sender                                                       latest              4fc2a03c525c        5 minutes ago       934MB
+````
