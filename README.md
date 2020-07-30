@@ -1,3 +1,5 @@
+- [Dockerhub image](https://hub.docker.com/r/scoulomb/mail-sender).
+
 # Mail sender 
 
 A simple generic mail sender written in python and delivered as a docker package.
@@ -19,19 +21,63 @@ See mail-sender\basic_mail\basic_send_mail.py
 
 ### Prepare 
 
+
+
 ````shell script
+bash
 export FROM="rene.coty@gmail.com"
 export TO="cool.dev@gmail.com"
 export SMTP_PWD="a-secret-pwd"
 ````
 
+Replace with your own parameter
+
+### Pull 
+
 ````shell script
-docker run scoulomb/mail --help    
-                
+docker pull scoulomb/mail-sender
 ````
+
+### Help
+
+````shell script
+$ docker run scoulomb/mail-sender --help
+usage: send_mail.py [-h] --sender SENDER --recipients RECIPIENTS
+                    [RECIPIENTS ...] --topic TOPIC --body BODY --files FILES
+                    [FILES ...] --host HOST --port PORT [--username USERNAME]
+                    [--password PASSWORD]
+
+A mail sender
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --sender SENDER       Mail sender
+  --recipients RECIPIENTS [RECIPIENTS ...]
+                        Mail recipients
+  --topic TOPIC         Mail topic
+  --body BODY           Mail body
+  --files FILES [FILES ...]
+                        Files to send as attachment
+  --host HOST           server
+  --port PORT           port
+  --username USERNAME   Username
+  --password PASSWORD   Password
+````
+
+### Run 
+
+````shell script
+docker run -v "$(pwd)/shared_folder_sample:/shared_folder_sample" scoulomb/mail-sender \
+--sender $FROM \
+--recipients $TO \
+--topic "non reg results" \
+--body "Finf attached the report" \
+--files "/shared_folder_sample/sample.txt" \
+--host "smtp.gmail.com" --port 587 \
+--username $FROM --password $SMTP_PWD
+````
+
 ## Dev guide
-
-
 
 ### Run python 
 
@@ -65,7 +111,9 @@ Note `--files` is at root here
 
 ## Continuous delivery
 
-Every time a change is merged in master, a docker image is built on dockerhub
+Every time a change is merged in master, a docker image is built on dockerhub.
+We use a dockerhub build rule.
+Image is available here: https://hub.docker.com/r/scoulomb/mail-sender
 
 ## Tips
  
