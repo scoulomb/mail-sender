@@ -109,6 +109,10 @@ docker run -v "$(pwd)/shared_folder_sample:/shared_folder_sample" mail \
 
 Note `--files` is at root here
 
+<!--
+Volume similar to: https://github.com/alpine-docker/git
+-->
+
 ## Continuous delivery
 
 Every time a change is merged in master, a docker image is built on dockerhub.
