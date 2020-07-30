@@ -29,7 +29,8 @@ def read_cli_arguments() -> Namespace:
     parser.add_argument(
         "--files",
         nargs="+",
-        required=True,
+        required=False,
+        default=None,
         help="Files to send as attachment")
 
     parser.add_argument("--host", type=str,

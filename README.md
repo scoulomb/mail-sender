@@ -66,6 +66,18 @@ optional arguments:
 
 ### Run 
 
+### Basic sending without attachment
+
+````shell script
+docker run scoulomb/mail-sender\
+--sender $FROM \
+--recipients $TO \
+--topic "non reg results" \
+--body "Find a body" \
+--host "smtp.gmail.com" --port 587 \
+--username $FROM --password $SMTP_PWD
+````
+
 #### Sending attachment
 
 ````shell script
