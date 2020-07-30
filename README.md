@@ -66,7 +66,12 @@ optional arguments:
 
 ### Run 
 
+#### Sending attachment
+
 ````shell script
+mkdir shared_folder_sample
+echo "My attachment text file" > shared_folder_sample/sample.txt
+
 docker run -v "$(pwd)/shared_folder_sample:/shared_folder_sample" scoulomb/mail-sender \
 --sender $FROM \
 --recipients $TO \
@@ -82,6 +87,8 @@ docker run -v "$(pwd)/shared_folder_sample:/shared_folder_sample" scoulomb/mail-
 ### Run python 
 
 ````shell script
+cd mail-sender
+
 python send_mail.py \
 --sender $FROM \
 --recipients $TO \
@@ -95,6 +102,8 @@ python send_mail.py \
 ### Build and Run docker
 
 ````shell script
+cd mail-sender
+
 docker build . -t mail
 
 docker run -v "$(pwd)/shared_folder_sample:/shared_folder_sample" mail \
